@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="Breakoutdungeon.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script><!-- 
+	<script src="Breakoutdungeon.js"></script> -->
+
+</head>
+<body>
+
+
+	<canvas id="myCanvas" width="720" height="720"></canvas>
+    
+    <script type="text/javascript" src="Breakoutdungeon.js"></script>
+<!--         <p>Game start</p>  
+        <input type = "button" onclick = "draw(); showGame(); hideSlide();" value = "Click">   -->
+
+<!-- <button id="nextbutton" onclick="/*finalpage();*/ draw(); showGame(); " >next -></button>
+ -->
+	<div class="slide" id="slide1">
+		<div id="start">
+			<br>
+			<div id="bo">Break Out</div> 
+			<div id="dungeon">Dungeon!</div>
+		</div>
+		<button id="gamestart" onclick="/*finalpage();*/next1();"></button>
+	</div>
+	<div class="slide" id="slide21">
+		<div class="setting" id="selectjob">당신의 직업은 무엇인가요?<br>
+			<div>
+				<input id="job1" type="radio" name="Job" checked>
+				<input id="job2" type="radio" name="Job">
+				<img src="warrior.png">
+				<img src="magic.png" width=110px><br>
+				<label class = "selectblock" for="job1">전사</label>
+				<label class = "selectblock" for="job2">마법사</label>
+			</div>
+		</div>
+		<button id="settingf" onclick="next21();">다음</button>
+	</div>
+	<div class="slide" id="slide22">
+		<div class="setting" id="selectbgm">mp3를 얻었다! 어떤 노래를 들으시겠어요?
+			<div>
+				<img src="mp3.png" class="mp3">
+				<img src="mp3.png" class="mp3">
+				<img src="mp3.png" class="mp3">
+				<br>
+				<input id="BGM1" type="radio" value="1" name="BGM" checked>
+				<label class = "selectblock" for="BGM1">평화.mp3</label>
+				<input id="BGM2" type="radio" value="2" name="BGM">
+				<label class = "selectblock" for="BGM2">신나.mp3</label>
+				<input id="BGMoff" type="radio" value="none" name="BGM">
+				<label class = "selectblock" for="BGMoff">조용히</label>
+			</div>
+		</div>
+		<button id="settingf" onclick="next22();">다음</button>
+	</div>
+	<div class="slide" id="slide23">
+		<div class="setting" id="selectsound">효과음도 한 번 골라봐요!<br>
+			<div>
+				<img src="eft.png" class="mp3">
+				<img src="eft.png" class="mp3">
+				<img src="eft.png" class="mp3">
+				<br>
+				<input id="sound1" type="radio"value="1" name="Sound" checked>
+				<audio id="sound" src="button-11.mp3"></audio>
+				<input id="sound2" type="radio" value="2"name="Sound">
+				<audio id="sound" src="button-16.mp3"></audio>
+				<input id="soundoff" type="radio" value="none" name="Sound">
+				<label class = "selectblock" for="sound1">젤리</label>
+				<label class = "selectblock" for="sound2">자석</label>
+				<label class = "selectblock" for="soundoff">조용히</label>
+			</div>
+		</div>
+		<button id="settingf" onclick="next23();">설정 완료</button>
+	</div>
+	<div class="slide" id="slide3">
+		<div id="Question">Q. 당신에게 가장 <big><strong>소중한 것</strong></big>은 무엇인가요?</div>
+		<div id="Answer">A. 아마도...
+			<form id="form3">
+				<input type="text" id="atext" size=10 maxlength=9/>
+			</form><span> 이야.</span><br>
+			<button id="answerf" onclick="next3();">입력 완료</button>
+		</div>
+	</div>
+	<div class="slide" id="slide4">
+		<div id="story">
+			<img src="devil.png" width=130px><br>
+			&nbsp;앗! 당신의
+			<span id="textthing">
+				<div id="thing"></div>
+			</span>
+			을(를)<br>
+			마왕이 훔쳐 달아났습니다!<br><br><br>
+			용사가 되어<br><br>
+			당신의 소중한 것을 구하는 모험을 시작하세요!
+		</div>
+		<button id="nextbutton" onclick="next4();">NEXT</button>
+	</div>
+	<div class="slide" id="slide5">
+		<div id="level">난이도 선택<br><br><small>난이도가 높아질수록 패들이 짧아져요!</small></div>
+		<div id="selectlevel">
+			<div class="levelsection">
+				<button class="levelbutton" id="easy" onclick="initPaddle1(); spotion();">&nbsp;▶ easy&nbsp;</button>
+			</div>
+			<div class="levelsection">
+				<button class="levelbutton" id="normal" onclick="initPaddle2(); spotion();">&nbsp;▶ normal&nbsp;</button>
+			</div>
+			<div class="levelsection">
+				<button class="levelbutton" id="hard" onclick="initPaddle3(); spotion();">&nbsp;▶ hard&nbsp;</button>
+			</div>
+		</div>
+	</div>
+	<div class="slide" id="slidepotion">
+		<div id="potion">"스텟포인트 +1 획득!"<br>능력을 업그레이드하세요</div>
+			<div id="biglabel">
+				<img class="potionimg" src="hp.png" width=100px>
+				<img class="potionimg" src="dmg.png" width=100px>
+				<img class="potionimg" src="ball.png" width=100px>
+				<br>
+				<div class="potionsection">
+					<button class="potionbutton" id="lives" 
+					onclick="/*finalpage();*/ changePotion1(); draw(); showGame(); hideSlide(); ">&nbsp;생명 +1&nbsp;</button>
+				</div>
+				<div class="potionsection">
+					<button class="potionbutton" id="damage"
+					onclick="/*finalpage();*/ changePotion2(); draw(); showGame(); hideSlide(); ">&nbsp;데미지 +1&nbsp;</button>
+				</div>
+				<div class="potionsection">
+					<button class="potionbutton" id="count"
+					onclick="/*finalpage();*/ changePotion3(); draw(); showGame(); hideSlide(); ">&nbsp;공 개수 +1&nbsp;</button>
+				</div>
+			</div>
+		<!--button id="nextbutton" onclick="/*finalpage();*/ draw(); showGame(); hideSlide();" >NEXT</button-->
+		<!--이지영 추가-->
+		<!--이지영 추가 끝-->
+	</div>
+	<div class="slide" id="finalslide">
+		<div id="finalstory">
+			<div id="complete">COMPLETE<br></div>
+			<img src="gift.png" width=300px><br>
+			<div id="final">당신의 소중한 물건(</div>
+			<div id="fthing"></div>&nbsp;)을(를)
+			<div id="finals"><br>마왕으로부터 되찾았습니다!</div>
+		</div>
+		<button id="nextbutton" onclick="startpage();">처음으로</button>
+	</div>
+</body>
+</html>
